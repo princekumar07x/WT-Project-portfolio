@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Kumar | Web Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700;900&display=swap">
+    <style>
+        /* Custom scrollbar for better aesthetics (Dark Mode) */
+        body.dark ::-webkit-scrollbar { width: 8px; }
+        body.dark ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+        body.dark ::-webkit-scrollbar-track { background: #1f2937; }
+
+        /* Custom scrollbar for better aesthetics (Light Mode) */
+        body.light ::-webkit-scrollbar-thumb { background: #10b981; }
+        body.light ::-webkit-scrollbar-track { background: #f0f0f0; }
+
+        /* Apply Inter font */
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+
+        /* Default is Dark Mode (Added 'dark' class for reliable toggling) */
+        body.dark { background-color: #111827; color: #f9fafb; }
+        .dark .bg-secondary-dark { background-color: #1f2937; }
+        .dark .border-gray-700 { border-color: #374151; }
+        .dark .text-gray-400 { color: #9ca3af; }
+        .dark .progress-bar-container { background-color: #374151; }
+        .dark .progress-bar { background-color: #3b82f6; }
+
+
+        /* Light Mode Overrides */
+        body.light { background-color: #ffffff; color: #1f2937; }
+        .light header, .light footer, .light .bg-secondary-dark { background-color: #f3f4f6 !important; border-color: #e5e7eb; }
+        .light .border-gray-700 { border-color: #e5e7eb; }
+        .light .text-gray-400 { color: #6b7280; }
+        .light .text-accent-blue { color: #10b981; } /* Light mode accent color is Green */
+        .light .hover\:text-accent-blue\:hover { color: #059669; }
+        .light .bg-accent-blue { background-color: #10b981; }
+        .light .hover\:bg-accent-blue\/80:hover { background-color: #059669; }
+        .light .progress-bar-container { background-color: #e5e7eb; }
+        .light .progress-bar { background-color: #10b981; }
+
+
+        /* Custom active link highlight */
+        .nav-link.active { font-weight: 700; border-bottom: 2px solid; }
+        .dark .nav-link.active { color: #3b82f6; border-color: #3b82f6; }
+        .light .nav-link.active { color: #10b981; border-color: #10b981; }
+
+        /* Common Styling */
+        .progress-bar-container { border-radius: 9999px; height: 8px; overflow: hidden; }
+        .progress-bar { height: 100%; transition: width 1s ease-in-out; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#111827',
+                        'secondary-dark': '#1f2937',
+                        'accent-blue': '#3b82f6', // Used in Dark Mode
+                        'accent-green': '#10b981', // Used in Light Mode
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="dark"> 
+    
+    <header id="header" class="sticky top-0 z-50 bg-secondary-dark/90 backdrop-blur-sm shadow-lg border-b border-gray-700">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <a href="#home" class="text-2xl font-black text-accent-blue hover:text-accent-blue/80 transition duration-300">
+                P.K.
+            </a>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-accent-blue py-5 transition duration-300">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-accent-blue py-5 transition duration-300">About</a>
+                <a href="#skills" class="nav-link text-gray-300 hover:text-accent-blue py-5 transition duration-300">Skills</a>
+                <a href="#projects" class="nav-link text-gray-300 hover:text-accent-blue py-5 transition duration-300">Projects</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-accent-blue py-5 transition duration-300">Contact</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-700 transition duration-300">
+                    <svg id="sunIcon" class="w-6 h-6 text-yellow-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moonIcon" class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <button id="mobileMenuButton" class="md:hidden p-2 rounded-md hover:bg-gray-700 transition duration-300">
+                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        
+        <div id="mobileMenu" class="md:hidden bg-secondary-dark/95 hidden transition-all duration-300 ease-in-out">
+            <a href="#home" class="nav-link block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300 border-t border-gray-700">Home</a>
+            <a href="#about" class="nav-link block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">About</a>
+            <a href="#skills" class="nav-link block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Skills</a>
+            <a href="#projects" class="nav-link block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Projects</a>
+            <a href="#contact" class="nav-link block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <section id="home" class="min-h-[calc(100vh-80px)] flex items-center justify-center text-center px-4 pt-16 md:pt-0">
+            <div class="space-y-6 max-w-2xl" data-aos="fade-up">
+                <img src="" alt="Professional Photo Placeholder" class="rounded-full w-36 h-36 mx-auto border-4 border-accent-blue shadow-xl">
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">Hi, I'm <span class="text-accent-blue">Prince Kumar</span></h1>
+                <p class="text-2xl md:text-3xl font-light text-gray-400">// Web Developer & Cloud Enthusiast // </p>
+                <p class="text-lg text-gray-400 max-w-xl mx-auto">I build clean, modern, and responsive web applications and focus on strong foundational programming skills in Java and DSA.</p>
+                <a href="#contact" class="inline-block px-8 py-3 bg-accent-blue text-white font-semibold rounded-full shadow-lg hover:bg-accent-blue/80 transition duration-300 transform hover:scale-105">
+                    Hire Me
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 px-4 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-center mb-16 text-accent-blue">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 border-l-4 border-accent-blue pl-3">Bio</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        I am Prince Kumar, a dedicated student and developer focusing on **HTML, CSS, and JavaScript** for front-end development, backed by solid knowledge in **C and Java**. My core strength is **Data Structures and Algorithms (DSA) in Java**, ensuring I build efficient and optimized solutions.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mt-4">
+                        I am passionate about cloud technologies and building scalable software. I'm actively seeking opportunities to apply my technical skills in a challenging environment.
+                    </p>
+                </div>
+                
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-semibold mb-4 border-l-4 border-accent-blue pl-3">Social Links</h3>
+                    
+                    <div class="relative pl-6 border-l-2 border-gray-600">
+                        <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-accent-blue border-4 bg-secondary-dark"></span>
+                        <h4 class="text-xl font-semibold">GitHub</h4>
+                        <a href="https://github.com/princekumar07x" target="_blank" class="text-gray-500 hover:text-accent-blue break-words">https://github.com/princekumar07x</a>
+                    </div>
+
+                    <div class="relative pl-6 border-l-2 border-gray-600">
+                        <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-accent-blue border-4 bg-secondary-dark"></span>
+                        <h4 class="text-xl font-semibold">LinkedIn</h4>
+                        <a href="https://www.linkedin.com/in/prince-kumar-189027324/" target="_blank" class="text-gray-500 hover:text-accent-blue break-words">https://www.linkedin.com/in/prince-kumar-189027324/</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 px-4 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-center mb-16 text-accent-blue">Technical Skills</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-secondary-dark p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <h4 class="text-lg font-semibold mb-3">DSA in Java</h4>
+                    <p class="text-sm text-gray-400 mb-2">Core Programming</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="bg-secondary-dark p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <h4 class="text-lg font-semibold mb-3">JavaScript</h4>
+                    <p class="text-sm text-gray-400 mb-2">Front-end Logic</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="bg-secondary-dark p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <h4 class="text-lg font-semibold mb-3">HTML & CSS</h4>
+                    <p class="text-sm text-gray-400 mb-2">Foundation & Styling</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 95%;"></div>
+                    </div>
+                </div>
+                <div class="bg-secondary-dark p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <h4 class="text-lg font-semibold mb-3">Java</h4>
+                    <p class="text-sm text-gray-400 mb-2">Object-Oriented Programming</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="bg-secondary-dark p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <h4 class="text-lg font-semibold mb-3">C</h4>
+                    <p class="text-sm text-gray-400 mb-2">System Fundamentals</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="bg-secondary-dark p-6 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <h4 class="text-lg font-semibold mb-3">Tailwind CSS</h4>
+                    <p class="text-sm text-gray-400 mb-2">Rapid Styling</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 px-4 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-center mb-16 text-accent-blue">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <div class="bg-secondary-dark rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-1">
+                    <img src="https://hunterae.com/wp-content/uploads/images/unique-photo-gallery-4k-premiere-project-videohive-38804641-download-free-hunterae-com-8.jpg" alt="Photo Gallery Project Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Photo Gallery</h3>
+                        <p class="text-gray-400 mb-4">A simple, responsive photo gallery built using basic HTML, CSS, and JavaScript.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/princekumar07x/PhotoGallery" target="_blank" class="text-accent-blue hover:text-accent-blue/80 font-medium">GitHub</a>
+                            <a href="photogallary.html" target="_blank" class="text-accent-green hover:text-accent-green/80 font-medium">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+              <div class="bg-secondary-dark rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-1">
+    <img src="https://media.istockphoto.com/id/1292897536/vector/dashboard-ui-infographic-data-graphic-and-chart-screen-with-business-analytics-admin.jpg?s=612x612&w=0&k=20&c=pIPKA4TdtjDKQgSZXDvt75QRsx9B78FLeKKP9amKFqU=" alt="Dashboard Project Image" class="w-full h-56 object-cover">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2">Admin Dashboard UI</h3>
+        <p class="text-gray-400 mb-4">A clean and modern administrative dashboard interface focusing on layout and responsiveness.</p>
+        <div class="flex space-x-4">
+            <a href="https://github.com/princekumar07x/Admin" target="_blank" class="text-accent-blue hover:text-accent-blue/80 font-medium">GitHub</a>
+            <a href="admin.html" target="_blank" class="text-accent-green hover:text-accent-green/80 font-medium">Live Demo</a>
+        </div>
+    </div>
+</div>
+
+                <div class="bg-secondary-dark rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-1">
+                    <img src="https://www.gujaratheadline.com/wp-content/uploads/2024/04/Main-Campus-Building_MU-scaled.jpg" alt="College Web Page Project Image" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">College Web Page</h3>
+                        <p class="text-gray-400 mb-4">A professional multi-section web page designed for a college or educational institution.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/princekumar07x/marwadi-university-webpage" target="_blank" class="text-accent-blue hover:text-accent-blue/80 font-medium">GitHub</a>
+                            <a href="https://princekumar07x.github.io/apna-collage-css/" target="_blank" class="text-accent-green hover:text-accent-green/80 font-medium">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 px-4 border-t border-gray-700">
+            <h2 class="text-4xl font-bold text-center mb-16 text-accent-blue">Get In Touch</h2>
+            <div class="max-w-xl mx-auto bg-secondary-dark p-8 rounded-lg shadow-2xl">
+                <form id="contactForm" onsubmit="return validateContactForm()">
+                    <div class="mb-5">
+                        <label for="cName" class="block mb-2 font-semibold">Name</label>
+                        <input type="text" id="cName" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-accent-blue text-white light:bg-gray-100 light:border-gray-300 light:text-gray-800">
+                        <p id="cNameError" class="text-red-400 text-sm mt-1"></p>
+                    </div>
+                    <div class="mb-5">
+                        <label for="cEmail" class="block mb-2 font-semibold">Email</label>
+                        <input type="email" id="cEmail" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-accent-blue text-white light:bg-gray-100 light:border-gray-300 light:text-gray-800">
+                        <p id="cEmailError" class="text-red-400 text-sm mt-1"></p>
+                    </div>
+                    <div class="mb-5">
+                        <label for="cMessage" class="block mb-2 font-semibold">Message</label>
+                        <textarea id="cMessage" rows="4" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:border-accent-blue text-white light:bg-gray-100 light:border-gray-300 light:text-gray-800"></textarea>
+                        <p id="cMessageError" class="text-red-400 text-sm mt-1"></p>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-accent-blue hover:bg-accent-blue/80 transition duration-300 rounded-md font-semibold">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary-dark py-10 border-t border-gray-700 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://github.com/Anik-prog-cloud" target="_blank" class="text-gray-400 hover:text-accent-blue transition duration-300">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.38 3.483 9.941 8.32 11.53.606.111.826-.264.826-.583 0-.288-.01-1.04-.015-2.04-3.38.736-4.098-1.637-4.098-1.637-.552-1.401-1.346-1.777-1.346-1.777-1.096-.749.083-.734.083-.734 1.21.085 1.847 1.246 1.847 1.246 1.076 1.84 2.825 1.309 3.513.999.109-.778.423-1.309.771-1.609-2.678-.304-5.496-1.339-5.496-5.964 0-1.317.47-2.392 1.235-3.23-.124-.304-.537-1.527.117-3.181 0 0 1.006-.324 3.303 1.238 2.05-.568 4.25-.568 6.303 0 2.296-1.562 3.302-1.238 3.302-1.238.653 1.654.24 2.877.117 3.181.766.838 1.913 1.235 3.23 0 4.634-2.822 5.657-5.504 5.955.434.373.823 1.102.823 2.222 0 1.609-.015 2.899-.015 3.289 0 .319.215.7.828.582 4.836-1.59 8.318-6.151 8.318-11.53C24 5.373 18.627 0 12 0z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/anik-das-004402319/" target="_blank" class="text-gray-400 hover:text-accent-blue transition duration-300">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73zM7.34 20.48H3.88V9.33h3.46v11.15zM5.61 7.7C4.42 7.7 3.5 6.78 3.5 5.59S4.42 3.48 5.61 3.48c1.19 0 2.11.92 2.11 2.11s-.92 2.11-2.11 2.11zm15.17 12.78h-3.46v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.69H9.83V9.33h3.31v1.52h.05c.46-.87 1.58-1.78 3.25-1.78 3.48 0 4.12 2.29 4.12 5.27v6.14z"/></svg>
+                </a>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-accent-blue transition duration-300">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M18.9 4.39a.7.7 0 0 0 .5-.21c.21-.21.21-.5 0-.71s-.5-.21-.71 0L17 5.76V4.39a.7.7 0 0 0-.7-.7h-3.61a.7.7 0 0 0-.7.7v1.37L10.96 4.18a.7.7 0 0 0-.71 0c-.21.21-.21.5 0 .71l3.52 3.52-3.52 3.52a.7.7 0 0 0 0 .71c.21.21.5.21.71 0l3.52-3.52 3.52 3.52a.7.7 0 0 0 .71 0c.21-.21.21-.5 0-.71l-3.52-3.52 3.52-3.52a.7.7 0 0 0 0-.71zM8 22H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1h-5v-5h-2v5H8v-5H6v5z"/></svg>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 text-sm">© <span id="year"></span> Prince Kumar. All rights reserved. | Built with Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 2. JavaScript for Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+
+            // --- Theme Toggle Logic (FIXED) ---
+            
+            // 1. Get initial state from localStorage, default to 'dark'
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+            
+            // 2. Apply the theme class on load
+            body.classList.add(currentTheme);
+            
+            // 3. Icon visibility function
+            function updateThemeIcons(theme) {
+                if (theme === 'light') {
+                    sunIcon.classList.remove('hidden'); // Show sun in light mode
+                    moonIcon.classList.add('hidden');
+                } else {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden'); // Show moon in dark mode
+                }
+            }
+            
+            // 4. Initial icon update
+            updateThemeIcons(currentTheme);
+
+            // 5. Click handler
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('dark')) {
+                    // Switch to Light Mode
+                    body.classList.remove('dark');
+                    body.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                    updateThemeIcons('light');
+                } else {
+                    // Switch to Dark Mode
+                    body.classList.remove('light');
+                    body.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    updateThemeIcons('dark');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+
+            // --- Smooth Scroll & Active Link Highlighting ---
+            const observerOptions = {
+                root: null,
+                // Adjusting root margin for better header detection (80px is header height)
+                rootMargin: '-80px 0px -50% 0px', 
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const link = document.querySelector(`.nav-link[href="#${id}"]`);
+
+                    if (link) {
+                        // Remove active class from all links first
+                        navLinks.forEach(l => l.classList.remove('active')); 
+                        
+                        // Add active class only to the current section's link
+                        if (entry.isIntersecting) {
+                            link.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // --- 3. Contact Form Validation ---
+        function validateContactForm() {
+            let isValid = true;
+            const name = document.getElementById('cName');
+            const email = document.getElementById('cEmail');
+            const message = document.getElementById('cMessage');
+
+            const nameError = document.getElementById('cNameError');
+            const emailError = document.getElementById('cEmailError');
+            const messageError = document.getElementById('cMessageError');
+
+            nameError.textContent = '';
+            emailError.textContent = '';
+            messageError.textContent = '';
+
+            if (name.value.trim() === '') {
+                nameError.textContent = 'Name is required.';
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value.trim() === '') {
+                emailError.textContent = 'Email is required.';
+                isValid = false;
+            } else if (!emailRegex.test(email.value.trim())) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            if (message.value.trim() === '') {
+                messageError.textContent = 'Message cannot be empty.';
+                isValid = false;
+            } else if (message.value.trim().length < 10) {
+                 messageError.textContent = 'Message must be at least 10 characters.';
+                 isValid = false;
+            }
+
+            if (isValid) {
+                alert('Thank you for your message! (Form submission is blocked here)');
+                // In a real application, you would submit the form data here
+            }
+
+            return false; // Prevents actual form submission (page reload)
+        }
+    </script>
+</body>
+</html>

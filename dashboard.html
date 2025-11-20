@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+    }
+
+    .header {
+      background: #2c3e50;
+      padding: 15px;
+      color: white;
+      font-size: 22px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+    }
+
+    .logout-btn {
+      background: #e74c3c;
+      padding: 10px 15px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">Welcome Admin</div>
+
+  <div class="container">
+
+    <div class="card">
+      <h3>Total Users</h3>
+      <p>150 Registered Users</p>
+    </div>
+
+    <div class="card">
+      <h3>New Messages</h3>
+      <p>You have 3 new notifications.</p>
+    </div>
+
+    <div class="card">
+      <h3>System Status</h3>
+      <p>Everything is running smoothly ✔</p>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+  </div>
+
+  <script>
+    function logout() {
+      alert("Logged out successfully!");
+      window.location.href = "admin.html"; // back to login page
+    }
+  </script>
+
+</body>
+</html>
